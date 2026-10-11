@@ -16,7 +16,7 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 
 ## Getting started
 
-Requires Node.js 22+.
+Requires Node.js 22 (pinned in `.nvmrc`).
 
 ```bash
 npm install
@@ -48,6 +48,22 @@ npm run test:e2e
 - Strict Content Security Policy, HSTS and anti-clickjacking headers
 - Dependabot for dependency updates
 - No secrets in the repository
+
+## Project structure
+
+Feature-first: each section owns its components, types and data.
+
+```
+src/
+├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink)
+├── features/
+│   └── projects/       # Components, types and typed content data
+├── App.tsx             # Page composition
+├── index.css           # Tailwind import, design tokens, base styles
+└── main.tsx            # Entry point
+e2e/                    # Playwright E2E and accessibility tests
+public/_headers         # Security headers for Cloudflare Pages
+```
 
 ## Roadmap
 
