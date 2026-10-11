@@ -16,11 +16,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
     project;
 
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-zinc-200 p-6 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700">
+    <article className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-line-strong">
       <p className="text-xs font-semibold tracking-wide text-accent uppercase">
         {KIND_LABELS[kind]}
       </p>
-      <h3 className="mt-2 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <h3 className="mt-2 font-display text-xl font-semibold text-ink-strong">
         {name}
       </h3>
       <p className="mt-3">{summary}</p>
@@ -54,9 +54,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </ExternalLink>
           ))
         ) : (
-          <span className="text-zinc-600 dark:text-zinc-400">
-            Private source code
-          </span>
+          <span className="text-ink-muted">Private source code</span>
         )}
       </div>
     </article>

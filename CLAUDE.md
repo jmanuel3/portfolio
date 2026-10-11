@@ -21,6 +21,8 @@ All site content, code, comments and commits are in English.
 - Content data lives in typed `*.data.ts` files, separate from components
 - Conventional Commits, small and atomic
 - Mobile-first, accessible (semantic HTML, visible focus, AA contrast)
+- Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `surface`, `line`, `ink`, `accent`), never raw palette colors or `dark:` variants
+- Display font (`font-display`) for headings only; body text uses the system stack
 
 ## Security baseline
 
