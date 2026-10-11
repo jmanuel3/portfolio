@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# Jose Manuel Carrasco — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio and freelance site of a full-stack developer based in Copenhagen.
 
-Currently, two official plugins are available:
+> 🚧 Work in progress — live site coming soon.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+- **React + TypeScript** — UI and type safety
+- **Vite** — dev server and build
+- **Tailwind CSS v4** — styling via the `@tailwindcss/vite` plugin
+- **oxlint + Prettier** — linting and formatting
+- **Cloudflare Pages** — hosting, with security headers in `public/_headers`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
+Requires Node.js 20+.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+| Command                | Description                         |
+| ---------------------- | ----------------------------------- |
+| `npm run dev`          | Start the dev server                |
+| `npm run build`        | Type-check and build for production |
+| `npm run preview`      | Preview the production build        |
+| `npm run lint`         | Lint with oxlint                    |
+| `npm run format`       | Format with Prettier                |
+| `npm run format:check` | Check formatting (used in CI)       |
+
+## Security
+
+- Strict Content Security Policy, HSTS and anti-clickjacking headers
+- Dependabot for dependency updates
+- No secrets in the repository
+
+## Roadmap
+
+- [ ] Projects, services, about and contact sections
+- [ ] Playwright E2E tests
+- [ ] CI with GitHub Actions
+- [ ] Deploy to Cloudflare Pages with a custom domain
+
+## License
+
+[MIT](LICENSE)
