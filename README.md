@@ -16,7 +16,7 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 
 ## Getting started
 
-Requires Node.js 22 (pinned in `.nvmrc`).
+Requires Node.js 24 (pinned in `.nvmrc`).
 
 ```bash
 npm install
@@ -55,11 +55,14 @@ Feature-first: each section owns its components, types and data.
 
 ```
 src/
-├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink)
+├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink, Aurora)
+├── content/            # Typed personal data reused across sections
 ├── features/
+│   ├── hero/           # Hero section and interactive avatar
 │   └── projects/       # Components, types and typed content data
+├── assets/             # Images processed and hashed by Vite
 ├── App.tsx             # Page composition
-├── index.css           # Tailwind import, design tokens, base styles
+├── index.css           # Tailwind import, design tokens, animations
 └── main.tsx            # Entry point
 e2e/                    # Playwright E2E and accessibility tests
 public/_headers         # Security headers for Cloudflare Pages
@@ -67,10 +70,11 @@ public/_headers         # Security headers for Cloudflare Pages
 
 ## Roadmap
 
+- [x] Hero section with interactive avatar
 - [x] Projects section
 - [x] Playwright E2E and accessibility tests
 - [x] CI with GitHub Actions
-- [ ] Hero, services, about and contact sections
+- [ ] Services, about and contact sections
 - [ ] Deploy to Cloudflare Pages with a custom domain
 
 ## License
