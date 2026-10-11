@@ -1,4 +1,4 @@
-export type ProjectKind = 'client' | 'personal' | 'academic';
+export type ProjectKind = 'client' | 'personal';
 
 export interface Repository {
   label: 'Source' | 'Frontend' | 'Backend';

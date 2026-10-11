@@ -5,7 +5,6 @@ import type { Project, ProjectKind } from './project.types';
 const KIND_LABELS: Record<ProjectKind, string> = {
   client: 'Client project',
   personal: 'Personal project',
-  academic: 'Academic project',
 };
 
 interface ProjectCardProps {

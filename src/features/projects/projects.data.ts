@@ -10,7 +10,7 @@ export const projects: readonly Project[] = [
     highlights: [
       'Booking system integrated with Google Calendar API via OAuth2',
       'Fixed a production email failure by migrating from SMTP to Resend',
-      'Typed, validated REST API with Zod and Prisma',
+      'Node.js/Express 5 backend with Prisma, Zod validation and PostgreSQL',
     ],
     stack: [
       'Astro',
@@ -33,7 +33,7 @@ export const projects: readonly Project[] = [
     summary:
       'Offline-first PWA for strength training, built local-first with zero frameworks.',
     highlights: [
-      'Lighthouse 100 in Performance, Accessibility and Best Practices',
+      'Lighthouse 100 in Accessibility, Best Practices and SEO',
       'Playwright E2E tests across 4 viewports running in CI',
       'Fully functional offline',
     ],
@@ -47,44 +47,13 @@ export const projects: readonly Project[] = [
     slug: 'ledel',
     name: 'Ledel',
     kind: 'client',
-    summary:
-      'Production website for a dermo-aesthetics clinic, with ongoing SEO work.',
+    summary: 'Production website for a dermo-aesthetics clinic.',
     highlights: [
-      'Live client site in continuous maintenance',
-      'Ongoing technical SEO improvements',
+      'Astro frontend and Node.js + MongoDB backend',
+      'Ongoing SEO work for a live client site',
     ],
     stack: ['Astro', 'TypeScript', 'Node.js', 'MongoDB'],
     liveUrl: 'https://ledeldermoestetica.com',
-    repositories: [
-      {
-        label: 'Frontend',
-        url: 'https://github.com/jmanuel3/Ledel---Frontend',
-      },
-      { label: 'Backend', url: 'https://github.com/jmanuel3/Ledel---Backend' },
-    ],
-  },
-  {
-    slug: 'furbitall',
-    name: 'FurbitAll',
-    kind: 'academic',
-    summary:
-      'MERN e-commerce with sports court bookings, built at RollingCode School.',
-    highlights: [
-      'REST API',
-      'Admin panel with full CRUD',
-      'Role-based authentication',
-    ],
-    stack: ['MongoDB', 'Express', 'React', 'Node.js'],
-    liveUrl: 'https://furbitall.netlify.app',
-    repositories: [
-      {
-        label: 'Frontend',
-        url: 'https://github.com/jmanuel3/FurbitAll-FrontEnd',
-      },
-      {
-        label: 'Backend',
-        url: 'https://github.com/jmanuel3/FurbitAll-Backend',
-      },
-    ],
+    repositories: [],
   },
 ];
