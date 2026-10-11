@@ -9,28 +9,39 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 - **React + TypeScript** — UI and type safety
 - **Vite** — dev server and build
 - **Tailwind CSS v4** — styling via the `@tailwindcss/vite` plugin
+- **Playwright + axe** — end-to-end and accessibility tests on desktop and mobile
 - **oxlint + Prettier** — linting and formatting
+- **GitHub Actions** — CI on every push and pull request
 - **Cloudflare Pages** — hosting, with security headers in `public/_headers`
 
 ## Getting started
 
-Requires Node.js 20+.
+Requires Node.js 22+.
 
 ```bash
 npm install
 npm run dev
 ```
 
+To run the E2E tests locally, install the browser once:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
 ## Scripts
 
-| Command                | Description                         |
-| ---------------------- | ----------------------------------- |
-| `npm run dev`          | Start the dev server                |
-| `npm run build`        | Type-check and build for production |
-| `npm run preview`      | Preview the production build        |
-| `npm run lint`         | Lint with oxlint                    |
-| `npm run format`       | Format with Prettier                |
-| `npm run format:check` | Check formatting (used in CI)       |
+| Command                 | Description                         |
+| ----------------------- | ----------------------------------- |
+| `npm run dev`           | Start the dev server                |
+| `npm run build`         | Type-check and build for production |
+| `npm run preview`       | Preview the production build        |
+| `npm run lint`          | Lint with oxlint                    |
+| `npm run format`        | Format with Prettier                |
+| `npm run format:check`  | Check formatting (used in CI)       |
+| `npm run typecheck:e2e` | Type-check the E2E tests            |
+| `npm run test:e2e`      | Run Playwright E2E and a11y tests   |
 
 ## Security
 
@@ -40,9 +51,10 @@ npm run dev
 
 ## Roadmap
 
-- [ ] Projects, services, about and contact sections
-- [ ] Playwright E2E tests
-- [ ] CI with GitHub Actions
+- [x] Projects section
+- [x] Playwright E2E and accessibility tests
+- [x] CI with GitHub Actions
+- [ ] Hero, services, about and contact sections
 - [ ] Deploy to Cloudflare Pages with a custom domain
 
 ## License
