@@ -7,7 +7,7 @@ export function ProjectsSection() {
     <Section id="projects" title="Projects">
       <ul className="grid gap-6 md:grid-cols-2">
         {projects.map((project) => (
-          <li key={project.slug}>
+          <li key={project.slug} className="md:first:col-span-2">
             <ProjectCard project={project} />
           </li>
         ))}
