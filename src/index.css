@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/*
+ * Semantic design tokens. Components use these names (bg-canvas, text-ink,
+ * border-line…) instead of raw palette colors, so the theme lives in one place.
+ */
 @theme {
   --color-canvas: #09090b; /* matches the avatar background */
   --color-surface: #111114;
@@ -12,6 +16,19 @@
 
   --font-display:
     'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 @layer base {
@@ -28,6 +45,12 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 }
 
@@ -70,6 +93,17 @@
     opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+
+  .avatar-float {
+    animation: avatar-float 6s ease-in-out infinite;
+  }
+
+  /* Tilt angles come from CSS variables set by the Avatar component */
+  .avatar-tilt {
+    transform: perspective(800px) rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg));
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 @keyframes aurora-drift {
@@ -81,8 +115,24 @@
   }
 }
 
+@keyframes avatar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob {
+  .aurora-blob,
+  .avatar-float {
     animation: none;
+  }
+
+  .avatar-tilt {
+    transform: none;
+    transition: none;
   }
 }

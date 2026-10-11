@@ -1,4 +1,5 @@
 import { Aurora } from './components/ui/Aurora';
+import { Hero } from './features/hero/Hero';
 import { ProjectsSection } from './features/projects/ProjectsSection';
 
 export function App() {
@@ -6,8 +7,7 @@ export function App() {
     <>
       <Aurora />
       <main>
-        {/* Temporary page heading until the Hero section lands */}
-        <h1 className="sr-only">Jose Manuel Carrasco — Full-Stack Developer</h1>
+        <Hero />
         <ProjectsSection />
       </main>
     </>
