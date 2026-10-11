@@ -1,1 +1,27 @@
 @import 'tailwindcss';
+
+@theme inline {
+  --color-accent: var(--accent);
+}
+
+:root {
+  --accent: var(--color-teal-700);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: var(--color-teal-400);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white text-zinc-700 antialiased dark:bg-zinc-950 dark:text-zinc-300;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
