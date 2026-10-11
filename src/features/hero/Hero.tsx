@@ -7,7 +7,7 @@ export function Hero() {
     <section
       aria-labelledby="hero-heading"
       // column-reverse puts the avatar first on mobile, text first on desktop
-      className="mx-auto flex min-h-[85svh] max-w-5xl flex-col-reverse items-center justify-center gap-10 px-4 py-20 sm:px-6 md:flex-row md:justify-between"
+      className="mx-auto flex max-w-5xl flex-col-reverse items-center justify-center gap-10 px-4 pt-24 pb-8 sm:px-6 md:flex-row md:justify-between md:pt-32"
     >
       <div className="text-center md:text-left">
         <p className="text-sm font-medium text-accent motion-safe:animate-fade-up">
