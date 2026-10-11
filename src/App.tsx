@@ -1,9 +1,11 @@
-function App() {
+import { ProjectsSection } from './features/projects/ProjectsSection';
+
+export function App() {
   return (
-    <main className="grid min-h-screen place-items-center">
-      <h1 className="text-3xl font-bold">Jose Manuel Carrasco</h1>
+    <main>
+      {/* Temporary page heading until the Hero section lands */}
+      <h1 className="sr-only">Jose Manuel Carrasco — Full-Stack Developer</h1>
+      <ProjectsSection />
     </main>
   );
 }
-
-export default App;
