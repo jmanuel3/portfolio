@@ -36,7 +36,13 @@ test('has no horizontal overflow', async ({ page }) => {
   expect(hasOverflow).toBe(false);
 });
 
-test('has no detectable accessibility violations', async ({ page }) => {
-  const results = await new AxeBuilder({ page }).analyze();
-  expect(results.violations).toEqual([]);
-});
+// Run the audit in both color schemes: contrast differs per theme
+for (const colorScheme of ['light', 'dark'] as const) {
+  test(`has no detectable accessibility violations in ${colorScheme} mode`, async ({
+    page,
+  }) => {
+    await page.emulateMedia({ colorScheme });
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+  });
+}
