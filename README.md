@@ -55,9 +55,12 @@ Feature-first: each section owns its components, types and data.
 
 ```
 src/
-├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink, Aurora, SpotlightCard)
+├── components/
+│   ├── layout/         # Page-level structure (Footer)
+│   └── ui/             # Shared, domain-agnostic UI and button styles
 ├── content/            # Typed personal data reused across sections
 ├── features/
+│   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero section and interactive avatar
 │   └── projects/       # Components, types and typed content data
 ├── assets/             # Images processed and hashed by Vite
@@ -74,7 +77,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Projects section
 - [x] Playwright E2E and accessibility tests
 - [x] CI with GitHub Actions
-- [ ] Services, about and contact sections
+- [x] Contact section and footer
 - [ ] Deploy to Cloudflare Pages with a custom domain
 
 ## License
