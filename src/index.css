@@ -1,11 +1,7 @@
 @import 'tailwindcss';
 
-/*
- * Semantic design tokens. Components use these names (bg-canvas, text-ink,
- * border-line…) instead of raw palette colors, so the theme lives in one place.
- */
 @theme {
-  --color-canvas: #09090b; /* matches the avatar background */
+  --color-canvas: #09090b;
   --color-surface: #111114;
   --color-line: #27272a;
   --color-line-strong: #3f3f46;
@@ -33,7 +29,6 @@
 
 @layer base {
   :root {
-    /* Dark-only design: native scrollbars and form controls follow it */
     color-scheme: dark;
   }
 
@@ -41,7 +36,6 @@
     @apply bg-canvas text-ink antialiased;
   }
 
-  /* Visible keyboard focus everywhere, never on mouse click */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
@@ -55,7 +49,6 @@
 }
 
 @layer components {
-  /* Radial gradients are soft by nature: no costly blur filter needed */
   .aurora-blob {
     position: absolute;
     width: 70vmax;
@@ -86,7 +79,6 @@
     animation: aurora-drift 32s ease-in-out infinite alternate-reverse;
   }
 
-  /* Static SVG noise adds texture and hides gradient banding */
   .grain {
     position: absolute;
     inset: 0;
@@ -98,11 +90,36 @@
     animation: avatar-float 6s ease-in-out infinite;
   }
 
-  /* Tilt angles come from CSS variables set by the Avatar component */
   .avatar-tilt {
     transform: perspective(800px) rotateX(var(--tilt-x, 0deg))
       rotateY(var(--tilt-y, 0deg));
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      400px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+      color-mix(in oklab, var(--color-accent) 12%, transparent),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .spotlight:hover::before {
+      opacity: 1;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import { ExternalLink } from '../../components/ui/ExternalLink';
+import { SpotlightCard } from '../../components/ui/SpotlightCard';
 import { Tag } from '../../components/ui/Tag';
 import type { Project, ProjectKind } from './project.types';
 
@@ -16,7 +17,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
     project;
 
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-line-strong">
+    <SpotlightCard className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
       <p className="text-xs font-semibold tracking-wide text-accent uppercase">
         {KIND_LABELS[kind]}
       </p>
@@ -39,7 +40,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
         ))}
       </ul>
 
-      {/* mt-auto pins the links to the bottom so cards in a row align */}
       <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6 text-sm">
         {liveUrl && (
           <ExternalLink href={liveUrl}>
@@ -57,6 +57,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <span className="text-ink-muted">Private source code</span>
         )}
       </div>
-    </article>
+    </SpotlightCard>
   );
 }

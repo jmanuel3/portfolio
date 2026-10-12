@@ -25,3 +25,17 @@ test('opens every external link safely in a new tab', async ({ page }) => {
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
 });
+
+test('tracks the pointer for the card spotlight', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'The spotlight is a hover-only effect');
+
+  const card = page.getByRole('article').first();
+  await card.hover();
+
+  await expect
+    .poll(() => card.evaluate((el) => el.style.getPropertyValue('--pointer-x')))
+    .toMatch(/px$/);
+});
