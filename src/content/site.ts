@@ -8,5 +8,6 @@ export const site = {
   links: {
     github: 'https://github.com/jmanuel3',
     linkedin: 'https://www.linkedin.com/in/jose-manuel-carrasco-rivero',
+    repo: 'https://github.com/jmanuel3/portfolio',
   },
 } as const;

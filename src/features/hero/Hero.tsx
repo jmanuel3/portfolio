@@ -1,3 +1,4 @@
+import { buttonPrimary, buttonSecondary } from '../../components/ui/button';
 import { ExternalLink } from '../../components/ui/ExternalLink';
 import { site } from '../../content/site';
 import { Avatar } from './Avatar';
@@ -6,7 +7,6 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      // column-reverse puts the avatar first on mobile, text first on desktop
       className="mx-auto flex max-w-5xl flex-col-reverse items-center justify-center gap-10 px-4 pt-24 pb-8 sm:px-6 md:flex-row md:justify-between md:pt-32"
     >
       <div className="text-center md:text-left">
@@ -27,16 +27,10 @@ export function Hero() {
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms] md:justify-start">
-          <a
-            href="#projects"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-canvas transition-colors hover:bg-ink-strong"
-          >
+          <a href="#projects" className={buttonPrimary}>
             View projects
           </a>
-          <a
-            href={`mailto:${site.email}`}
-            className="rounded-full border border-line-strong px-5 py-2.5 text-sm font-semibold text-ink-strong transition-colors hover:border-accent"
-          >
+          <a href={`mailto:${site.email}`} className={buttonSecondary}>
             Get in touch
           </a>
         </div>
