@@ -55,7 +55,7 @@ Feature-first: each section owns its components, types and data.
 
 ```
 src/
-├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink, Aurora)
+├── components/ui/      # Shared, domain-agnostic UI (Section, Tag, ExternalLink, Aurora, SpotlightCard)
 ├── content/            # Typed personal data reused across sections
 ├── features/
 │   ├── hero/           # Hero section and interactive avatar
