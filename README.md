@@ -7,7 +7,7 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 ## Tech stack
 
 - **React + TypeScript** — UI and type safety
-- **Vite** — dev server and build
+- **Vite** — dev server and multi-page build (home + 404)
 - **Tailwind CSS v4** — styling via the `@tailwindcss/vite` plugin
 - **Playwright + axe** — end-to-end and accessibility tests on desktop and mobile
 - **oxlint + Prettier** — linting and formatting
@@ -49,6 +49,13 @@ npm run test:e2e
 - Dependabot for dependency updates
 - No secrets in the repository
 
+## SEO
+
+- Social preview metadata (Open Graph), `robots.txt` and `sitemap.xml`
+- Custom 404 page: Cloudflare Pages serves it with a real 404 status for
+  unknown routes (instead of a soft 404 with the home page), and it is
+  marked `noindex`
+
 ## Project structure
 
 Feature-first: each section owns its components, types and data.
@@ -62,12 +69,16 @@ src/
 ├── features/
 │   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero section and interactive avatar
+│   ├── not-found/      # Custom 404 page
 │   ├── projects/       # Components, types and typed content data
 │   └── services/       # Services cards with mascot illustrations
 ├── assets/             # Images processed and hashed by Vite
-├── App.tsx             # Page composition
+├── App.tsx             # Home page composition
 ├── index.css           # Tailwind import, design tokens, animations
-└── main.tsx            # Entry point
+├── main.tsx            # Entry point (home)
+├── mount.tsx           # Shared bootstrap for every HTML entry
+└── not-found.tsx       # Entry point (404 page)
+404.html                # 404 entry, built alongside index.html
 e2e/                    # Playwright E2E and accessibility tests
 public/_headers         # Security headers for Cloudflare Pages
 ```
@@ -82,6 +93,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Contact section and footer
 - [x] Deploy to Cloudflare Pages
 - [x] SEO and social preview metadata
+- [x] Custom 404 page with real 404 status
 - [ ] Custom domain
 
 ## License
