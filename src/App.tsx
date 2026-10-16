@@ -3,6 +3,7 @@ import { Backdrop } from './components/ui/Backdrop';
 import { ContactSection } from './features/contact/ContactSection';
 import { Hero } from './features/hero/Hero';
 import { ProjectsSection } from './features/projects/ProjectsSection';
+import { ServicesSection } from './features/services/ServicesSection';
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
       <main>
         <Hero />
         <ProjectsSection />
+        <ServicesSection />
         <ContactSection />
       </main>
       <Footer />
