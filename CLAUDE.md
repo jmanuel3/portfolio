@@ -35,3 +35,4 @@ All site content, code, comments and commits are in English.
 
 - Developed on Windows: `.gitattributes` enforces LF line endings
 - `_headers` only applies on Cloudflare, not in `npm run dev`
+- The site URL is hardcoded in `index.html`, `public/robots.txt` and `public/sitemap.xml` (static files can't import `site.ts`): update all three when the domain changes
