@@ -68,7 +68,7 @@ src/
 ├── content/            # Typed personal data reused across sections
 ├── features/
 │   ├── contact/        # Contact call to action
-│   ├── hero/           # Hero section and interactive avatar
+│   ├── hero/           # Hero with the mascot and painted yard markings
 │   ├── not-found/      # Custom 404 page
 │   ├── projects/       # Components, types and typed content data
 │   └── services/       # Services cards with mascot illustrations
@@ -95,6 +95,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] SEO and social preview metadata
 - [x] Custom 404 page with real 404 status
 - [x] Sticky header with logo and section nav
+- [x] Football field background with the mascot in the hero
 - [ ] Custom domain
 
 ## License
