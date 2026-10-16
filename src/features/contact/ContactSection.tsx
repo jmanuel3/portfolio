@@ -4,6 +4,7 @@ import { ExternalLink } from '../../components/ui/ExternalLink';
 import { Section } from '../../components/ui/Section';
 import { SpotlightCard } from '../../components/ui/SpotlightCard';
 import { site } from '../../content/site';
+import { MascotPatch } from '../../components/ui/MascotPatch';
 
 export function ContactSection() {
   return (
@@ -38,15 +39,10 @@ export function ContactSection() {
           <p className="mt-4 text-sm text-ink-muted">I reply within a day.</p>
         </div>
 
-        <div className="stitched order-first mx-auto grid size-40 place-items-center rounded-full bg-paper p-5 motion-safe:transition-transform motion-safe:hover:rotate-6 sm:size-48 md:order-0 md:mx-0">
-          <img
-            src={mascotCelebrate}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="size-full object-contain"
-          />
-        </div>
+        <MascotPatch
+          src={mascotCelebrate}
+          className="order-first mx-auto md:order-0 md:mx-0"
+        />
       </SpotlightCard>
     </Section>
   );
