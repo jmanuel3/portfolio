@@ -46,6 +46,11 @@
     @apply bg-canvas text-ink antialiased;
   }
 
+  /* The sticky header would cover anchored sections without this offset */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
   /* Visible keyboard focus everywhere, never on mouse click */
   :focus-visible {
     outline: 2px solid var(--color-accent);

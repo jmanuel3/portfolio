@@ -63,7 +63,7 @@ Feature-first: each section owns its components, types and data.
 ```
 src/
 ├── components/
-│   ├── layout/         # Page-level structure (Footer)
+│   ├── layout/         # Page-level structure (Header, Footer)
 │   └── ui/             # Shared, domain-agnostic UI and button styles
 ├── content/            # Typed personal data reused across sections
 ├── features/
@@ -94,6 +94,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Deploy to Cloudflare Pages
 - [x] SEO and social preview metadata
 - [x] Custom 404 page with real 404 status
+- [x] Sticky header with logo and section nav
 - [ ] Custom domain
 
 ## License

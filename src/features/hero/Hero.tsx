@@ -6,8 +6,9 @@ import { Avatar } from './Avatar';
 export function Hero() {
   return (
     <section
+      id="top"
       aria-labelledby="hero-heading"
-      className="mx-auto flex max-w-5xl flex-col-reverse items-center justify-center gap-10 px-4 pt-24 pb-8 sm:px-6 md:flex-row md:justify-between md:pt-32"
+      className="mx-auto flex max-w-5xl flex-col-reverse items-center justify-center gap-10 px-4 pt-16 pb-8 sm:px-6 md:flex-row md:justify-between md:pt-24"
     >
       <div className="text-center md:text-left">
         <p className="text-sm font-medium text-accent motion-safe:animate-fade-up">

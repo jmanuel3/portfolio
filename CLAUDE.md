@@ -39,3 +39,4 @@ All site content, code, comments and commits are in English.
 - The site URL is hardcoded in `index.html`, `public/robots.txt` and `public/sitemap.xml` (static files can't import `site.ts`): update all three when the domain changes
 - Two HTML entries (`index.html`, `404.html`) registered in `vite.config.ts`: global setup (fonts, CSS) goes in `src/mount.tsx` so both pages get it
 - `404.html` must stay `noindex`: Cloudflare Pages serves it with a 404 status for unknown routes, but `/404.html` itself returns 200
+- Sticky header: anchored sections get `scroll-margin-top` in `src/index.css`; keep it larger than the header height if the header grows
