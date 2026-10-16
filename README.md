@@ -2,7 +2,7 @@
 
 Personal portfolio and freelance site of a full-stack developer based in Copenhagen.
 
-> 🚧 Work in progress — live site coming soon.
+**Live:** [jmanuel.pages.dev](https://jmanuel.pages.dev)
 
 ## Tech stack
 
@@ -78,7 +78,9 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Playwright E2E and accessibility tests
 - [x] CI with GitHub Actions
 - [x] Contact section and footer
-- [ ] Deploy to Cloudflare Pages with a custom domain
+- [x] Deploy to Cloudflare Pages
+- [x] SEO and social preview metadata
+- [ ] Custom domain
 
 ## License
 
