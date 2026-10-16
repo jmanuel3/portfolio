@@ -17,7 +17,7 @@ export function Section({ id, title, children }: SectionProps) {
     >
       <h2
         id={headingId}
-        className="mb-10 font-display text-3xl font-semibold tracking-tight text-ink-strong sm:text-4xl"
+        className="mb-12 font-display text-3xl font-normal tracking-tight text-ink-strong sm:mb-14 sm:text-4xl"
       >
         {title}
       </h2>
