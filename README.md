@@ -62,7 +62,8 @@ src/
 ├── features/
 │   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero section and interactive avatar
-│   └── projects/       # Components, types and typed content data
+│   ├── projects/       # Components, types and typed content data
+│   └── services/       # Services cards with mascot illustrations
 ├── assets/             # Images processed and hashed by Vite
 ├── App.tsx             # Page composition
 ├── index.css           # Tailwind import, design tokens, animations
@@ -75,6 +76,7 @@ public/_headers         # Security headers for Cloudflare Pages
 
 - [x] Hero section with interactive avatar
 - [x] Projects section
+- [x] Services section
 - [x] Playwright E2E and accessibility tests
 - [x] CI with GitHub Actions
 - [x] Contact section and footer

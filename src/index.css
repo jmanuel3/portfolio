@@ -17,6 +17,8 @@
   /* Fails AA contrast for small text on canvas: large display text and decoration only */
   --color-brand: #c8102e;
   --color-paper: #f3efd9;
+  --color-paper-ink: #2a2420;
+  --color-paper-muted: #5c544a;
 
   --font-display: 'Graduate', ui-serif, Georgia, serif;
 
