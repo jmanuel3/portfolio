@@ -6,9 +6,9 @@ export function ProjectsSection() {
   return (
     <Section id="projects" title="Projects">
       <ul className="grid gap-6 md:grid-cols-2">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <li key={project.slug} className="md:first:col-span-2">
-            <ProjectCard project={project} />
+            <ProjectCard project={project} number={index + 1} />
           </li>
         ))}
       </ul>

@@ -15,7 +15,7 @@ export function Hero() {
         </p>
         <h1
           id="hero-heading"
-          className="mt-3 font-display text-5xl font-bold tracking-tight text-ink-strong motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl"
+          className="mt-3 font-display text-4xl font-normal tracking-tight text-ink-strong motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl"
         >
           {site.name}
         </h1>

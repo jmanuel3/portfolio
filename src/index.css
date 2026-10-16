@@ -1,17 +1,24 @@
 @import 'tailwindcss';
 
+/*
+ * Semantic design tokens. Components use these names (bg-canvas, text-ink,
+ * border-line…) instead of raw palette colors, so the theme lives in one place.
+ * Palette: Osos Rivas red, yellow and white, on a warm near-black.
+ */
 @theme {
-  --color-canvas: #09090b;
-  --color-surface: #111114;
-  --color-line: #27272a;
-  --color-line-strong: #3f3f46;
-  --color-ink: #e4e4e7;
-  --color-ink-muted: #a1a1aa;
-  --color-ink-strong: #fafafa;
-  --color-accent: #2dd4bf;
+  --color-canvas: #121014;
+  --color-surface: #1c191f;
+  --color-line: #3a3530;
+  --color-line-strong: #57504a;
+  --color-ink: #e9e4d4;
+  --color-ink-muted: #a9a294;
+  --color-ink-strong: #f3efd9;
+  --color-accent: #ffc72c;
+  /* Fails AA contrast for small text on canvas: large display text and decoration only */
+  --color-brand: #c8102e;
+  --color-paper: #f3efd9;
 
-  --font-display:
-    'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Graduate', ui-serif, Georgia, serif;
 
   --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 
@@ -29,6 +36,7 @@
 
 @layer base {
   :root {
+    /* Dark-only design: native scrollbars and form controls follow it */
     color-scheme: dark;
   }
 
@@ -36,6 +44,7 @@
     @apply bg-canvas text-ink antialiased;
   }
 
+  /* Visible keyboard focus everywhere, never on mouse click */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
@@ -49,7 +58,8 @@
 }
 
 @layer components {
-  .aurora-blob {
+  /* Radial gradients are soft by nature: no costly blur filter needed */
+  .backdrop-glow {
     position: absolute;
     width: 70vmax;
     height: 70vmax;
@@ -57,39 +67,47 @@
     will-change: transform;
   }
 
-  .aurora-blob--teal {
-    top: -35vmax;
-    left: -20vmax;
+  .backdrop-glow--red {
+    top: -38vmax;
+    left: -22vmax;
     background: radial-gradient(
       circle,
-      rgb(20 184 166 / 0.22),
+      color-mix(in oklab, var(--color-brand) 16%, transparent),
       transparent 65%
     );
-    animation: aurora-drift 26s ease-in-out infinite alternate;
+    animation: backdrop-drift 28s ease-in-out infinite alternate;
   }
 
-  .aurora-blob--violet {
-    top: -30vmax;
-    right: -25vmax;
+  .backdrop-glow--gold {
+    top: -34vmax;
+    right: -26vmax;
     background: radial-gradient(
       circle,
-      rgb(124 58 237 / 0.18),
+      color-mix(in oklab, var(--color-accent) 10%, transparent),
       transparent 65%
     );
-    animation: aurora-drift 32s ease-in-out infinite alternate-reverse;
+    animation: backdrop-drift 34s ease-in-out infinite alternate-reverse;
   }
 
+  /* Static SVG noise adds a printed-paper texture and hides gradient banding */
   .grain {
     position: absolute;
     inset: 0;
-    opacity: 0.05;
+    opacity: 0.06;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Dashed inner line, like the stitching on a varsity patch */
+  .stitched {
+    outline: 2px dashed var(--color-line-strong);
+    outline-offset: -8px;
   }
 
   .avatar-float {
     animation: avatar-float 6s ease-in-out infinite;
   }
 
+  /* Tilt angles come from CSS variables set by the Avatar component */
   .avatar-tilt {
     transform: perspective(800px) rotateX(var(--tilt-x, 0deg))
       rotateY(var(--tilt-y, 0deg));
@@ -98,6 +116,7 @@
 
   .spotlight {
     position: relative;
+    /* New stacking context: the glow paints above the card background, below its content */
     isolation: isolate;
   }
 
@@ -109,13 +128,14 @@
     border-radius: inherit;
     background: radial-gradient(
       400px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-      color-mix(in oklab, var(--color-accent) 12%, transparent),
+      color-mix(in oklab, var(--color-accent) 10%, transparent),
       transparent 40%
     );
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
+  /* Only devices with a real hover (mouse, trackpad) get the effect */
   @media (hover: hover) {
     .spotlight:hover::before {
       opacity: 1;
@@ -123,7 +143,7 @@
   }
 }
 
-@keyframes aurora-drift {
+@keyframes backdrop-drift {
   from {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -143,7 +163,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob,
+  .backdrop-glow,
   .avatar-float {
     animation: none;
   }

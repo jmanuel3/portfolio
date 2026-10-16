@@ -9,7 +9,7 @@ export function ContactSection() {
     <Section id="contact" title="Got a project in mind?">
       <SpotlightCard
         as="div"
-        className="rounded-2xl border border-line bg-surface p-8 sm:p-12"
+        className="stitched rounded-2xl border border-line bg-surface p-8 sm:p-12"
       >
         <p className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium text-ink-muted">
           <span

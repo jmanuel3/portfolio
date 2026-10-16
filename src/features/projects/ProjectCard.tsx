@@ -10,18 +10,30 @@ const KIND_LABELS: Record<ProjectKind, string> = {
 
 interface ProjectCardProps {
   project: Project;
+  // Position in the list, shown as a jersey number (#01, #02…)
+  number: number;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, number }: ProjectCardProps) {
   const { name, kind, summary, highlights, stack, liveUrl, repositories } =
     project;
 
   return (
-    <SpotlightCard className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/40">
-      <p className="text-xs font-semibold tracking-wide text-accent uppercase">
-        {KIND_LABELS[kind]}
-      </p>
-      <h3 className="mt-2 font-display text-xl font-semibold text-ink-strong">
+    <SpotlightCard className="stitched flex h-full flex-col rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-accent/40">
+      <div className="flex items-start justify-between gap-4">
+        <p className="text-xs font-semibold tracking-wide text-accent uppercase">
+          {KIND_LABELS[kind]}
+        </p>
+        {/* Decorative: list order already conveys the sequence */}
+        <span
+          aria-hidden="true"
+          className="font-display text-4xl leading-none text-brand"
+        >
+          #{String(number).padStart(2, '0')}
+        </span>
+      </div>
+
+      <h3 className="mt-2 font-display text-2xl font-normal text-ink-strong">
         {name}
       </h3>
       <p className="mt-3">{summary}</p>
@@ -40,6 +52,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         ))}
       </ul>
 
+      {/* mt-auto pins the links to the bottom so cards in a row align */}
       <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6 text-sm">
         {liveUrl && (
           <ExternalLink href={liveUrl}>

@@ -1,5 +1,5 @@
 import { Footer } from './components/layout/Footer';
-import { Aurora } from './components/ui/Aurora';
+import { Backdrop } from './components/ui/Backdrop';
 import { ContactSection } from './features/contact/ContactSection';
 import { Hero } from './features/hero/Hero';
 import { ProjectsSection } from './features/projects/ProjectsSection';
@@ -7,7 +7,7 @@ import { ProjectsSection } from './features/projects/ProjectsSection';
 export function App() {
   return (
     <>
-      <Aurora />
+      <Backdrop />
       <main>
         <Hero />
         <ProjectsSection />
