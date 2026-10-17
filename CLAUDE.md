@@ -44,3 +44,4 @@ All site content, code, comments and commits are in English.
 - Mascot run: `mascot-ready.webp`, both run videos and `mascot-hello.webp` share one 508×560 box (first frame, run, last frame), so every swap is seamless. The `field-advance` keyframes in `src/index.css` are timed to the video (95 frames at 24 fps): re-encoding the run means re-timing them
 - Run videos use the stacked-alpha format (colour on top, alpha below). Encode with the AV1 and HEVC commands in the `stacked-alpha-video` README; the HEVC file is the Safari fallback
 - The run only starts with hardware WebGL: software renderers (CI, Lighthouse) show the static pose. E2E tests report a fake GPU renderer to cover the run
+- Social preview: LinkedIn and WhatsApp cache `og:image` by URL. When `public/og-image.png` changes, bump the `?v=` query on `og:image` in `index.html`, then refresh with LinkedIn Post Inspector
