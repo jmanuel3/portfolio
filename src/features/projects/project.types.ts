@@ -1,6 +1,6 @@
 export type ProjectKind = 'client' | 'personal';
 
-export interface Repository {
+interface Repository {
   label: 'Source' | 'Frontend' | 'Backend';
   url: string;
 }

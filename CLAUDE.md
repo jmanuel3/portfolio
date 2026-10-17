@@ -20,6 +20,7 @@ All site content, code, comments and commits are in English.
 - Feature-first structure under `src/features/<feature>/`; shared UI in `src/components/`
 - Content data lives in typed `*.data.ts` files, separate from components
 - Conventional Commits, small and atomic
+- No dead code: CI runs `knip` (unused files, exports, dependencies) and `check:assets` (files in `src/assets` that no build output uses). Only export what another module imports
 - Mobile-first, accessible (semantic HTML, visible focus, AA contrast)
 - Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `surface`, `line`, `ink`, `accent`, `brand`, `paper`, `paper-ink`, `paper-muted`), never raw palette colors or `dark:` variants
 - `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`
@@ -45,3 +46,4 @@ All site content, code, comments and commits are in English.
 - Run videos use the stacked-alpha format (colour on top, alpha below). Encode with the AV1 and HEVC commands in the `stacked-alpha-video` README; the HEVC file is the Safari fallback
 - The run only starts with hardware WebGL: software renderers (CI, Lighthouse) show the static pose. E2E tests report a fake GPU renderer to cover the run
 - Social preview: LinkedIn and WhatsApp cache `og:image` by URL. When `public/og-image.png` changes, bump the `?v=` query on `og:image` in `index.html`, then refresh with LinkedIn Post Inspector
+- `check:assets` compares `src/assets` with `dist/assets`, so it needs a fresh build. Vite inlines assets under 4 KB, which the check would report as unused: keep such icons in `public/` or set `build.assetsInlineLimit`

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export type RunState = 'idle' | 'running' | 'done';
+type RunState = 'idle' | 'running' | 'done';
 
 // Software rasterisers (no GPU) composite every video frame on the main thread
 const SOFTWARE_RENDERER = /swiftshader|llvmpipe|softpipe|software/i;
