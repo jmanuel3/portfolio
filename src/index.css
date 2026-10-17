@@ -165,32 +165,44 @@
 
   /* The hero is the painted part of the field: yard lines, hash marks and numbers */
   .hero-field {
+    /* One yard segment, and how far the field slides while the mascot runs (20 yards) */
+    --segment: calc(100cqi / var(--yards));
+    --run-distance: calc(2 * var(--segment));
+
     position: relative;
     isolation: isolate;
+    /* The markings layer is wider than the hero: never let it cause horizontal scroll */
+    overflow-x: clip;
     /* Room for the hash marks and yard numbers under the hero content */
     padding-bottom: 7rem;
-    /* Yard numbers are sized from this width, so they line up with the yard lines */
+    /* Markings are sized in cqi from this width, so numbers line up with the yard lines */
     container-type: inline-size;
   }
 
-  .hero-field::before {
-    content: '';
+  /*
+   * Goal line to goal line fills the hero; the end zone waits just past the
+   * right edge and comes into view as the field slides.
+   */
+  .field-markings {
     position: absolute;
-    inset: 0;
+    inset-block: 0;
+    left: 0;
     z-index: -1;
+    width: calc(100cqi + var(--run-distance));
     background:
       repeating-linear-gradient(
           90deg,
           color-mix(in oklab, var(--color-paper) 35%, transparent) 0 2px,
-          transparent 2px calc(20% / var(--yards))
+          transparent 2px calc(var(--segment) / 5)
         )
-        left 0 bottom 5rem / 100% 0.875rem no-repeat,
+        left 0 bottom 5rem / 100cqi 0.875rem no-repeat,
       repeating-linear-gradient(
-        90deg,
-        transparent 0 calc(100% / var(--yards) - 3px),
-        color-mix(in oklab, var(--color-paper) 22%, transparent)
-          calc(100% / var(--yards) - 3px) calc(100% / var(--yards))
-      );
+          90deg,
+          transparent 0 calc(var(--segment) - 3px),
+          color-mix(in oklab, var(--color-paper) 22%, transparent)
+            calc(var(--segment) - 3px) var(--segment)
+        )
+        left 0 top 0 / 100cqi 100% no-repeat;
     /* Faint behind the headline, fully painted near the yard numbers */
     mask-image: linear-gradient(
       to bottom,
@@ -200,20 +212,36 @@
     );
   }
 
+  /* End zone: brand stripes between the right goal line and the end line */
+  .field-markings::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    left: 100cqi;
+    width: var(--segment);
+    border-right: 3px solid
+      color-mix(in oklab, var(--color-paper) 22%, transparent);
+    background: repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklab, var(--color-brand) 18%, transparent) 0 0.75rem,
+      transparent 0.75rem 1.5rem
+    );
+  }
+
   .yard-numbers {
     position: absolute;
     bottom: 1.5rem;
     left: 0;
     display: flex;
     /* Starts half a segment in, so each number is centred on its yard line */
-    padding-inline-start: calc(50cqi / var(--yards));
+    padding-inline-start: calc(var(--segment) / 2);
     font-family: var(--font-display);
     font-size: clamp(1.25rem, 3vw, 2.5rem);
     color: color-mix(in oklab, var(--color-paper) 28%, transparent);
   }
 
   .yard-numbers li {
-    width: calc(100cqi / var(--yards));
+    width: var(--segment);
     text-align: center;
   }
 
@@ -223,6 +251,41 @@
     .yard-numbers li:nth-last-child(-n + 2) {
       display: none;
     }
+  }
+
+  /* The field slides in step with the run in the video: still, speeds up, cruises, slows down */
+  .hero-field[data-run='running'] .field-markings {
+    animation: field-advance calc(95s / 24) linear both;
+  }
+
+  .hero-field[data-run='done'] .field-markings {
+    translate: calc(-1 * var(--run-distance)) 0;
+  }
+
+  /* Poster and video share one grid cell, so the swap between them never shifts layout */
+  .mascot-stage {
+    display: grid;
+    border-radius: 1rem;
+  }
+
+  .mascot-stage > * {
+    grid-area: 1 / 1;
+  }
+
+  .mascot-stage:enabled {
+    cursor: pointer;
+  }
+
+  /* The component draws the inner <video> to a canvas; the video itself stays hidden */
+  .mascot-video video {
+    display: none;
+  }
+
+  /* One pose at a time: ready before the run, the video during it, the final pose after */
+  .mascot-stage:not([data-run='idle']) .mascot-poster,
+  .mascot-stage:not([data-run='running']) .mascot-video,
+  .mascot-stage:not([data-run='done']) .mascot-final {
+    visibility: hidden;
   }
 
   /* Thin cream rim: keeps the mascot's black line art readable on the dark turf */
@@ -238,6 +301,27 @@
   }
   to {
     transform: translate3d(8vmax, 6vmax, 0) scale(1.15);
+  }
+}
+
+/* Keyframe offsets follow the video: 95 frames at 24 fps, run from frame 22 to 79 */
+@keyframes field-advance {
+  0%,
+  22.1% {
+    translate: 0 0;
+    animation-timing-function: ease-in;
+  }
+  27.4% {
+    translate: calc(-0.059 * var(--run-distance)) 0;
+    animation-timing-function: linear;
+  }
+  72.6% {
+    translate: calc(-0.911 * var(--run-distance)) 0;
+    animation-timing-function: ease-out;
+  }
+  83.2%,
+  100% {
+    translate: calc(-1 * var(--run-distance)) 0;
   }
 }
 

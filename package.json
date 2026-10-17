@@ -16,7 +16,8 @@
   "dependencies": {
     "@fontsource/graduate": "^5.3.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "stacked-alpha-video": "1.0.10"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

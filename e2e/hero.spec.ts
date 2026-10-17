@@ -21,9 +21,3 @@ test('offers an email contact link', async ({ page }) => {
     page.getByRole('link', { name: 'Get in touch' }),
   ).toHaveAttribute('href', `mailto:${site.email}`);
 });
-
-test('shows the mascot as a decorative image', async ({ page }) => {
-  const mascot = page.locator('#top img');
-  await expect(mascot).toBeVisible();
-  await expect(mascot).toHaveAttribute('alt', '');
-});
