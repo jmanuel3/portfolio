@@ -19,6 +19,9 @@
   --color-paper: #f3efd9;
   --color-paper-ink: #2a2420;
   --color-paper-muted: #5c544a;
+  /* Warm turf for the football field background: mowing stripes alternate the two */
+  --color-turf: #17120f;
+  --color-turf-light: #1c1612;
 
   --font-display: 'Graduate', ui-serif, Georgia, serif;
 
@@ -40,10 +43,32 @@
   :root {
     /* Dark-only design: native scrollbars and form controls follow it */
     color-scheme: dark;
+    /* Yard lines across the width: fewer on small screens so the field never looks busy */
+    --yards: 10;
+  }
+
+  @media (width < 40rem) {
+    :root {
+      --yards: 6;
+    }
   }
 
   body {
     @apply bg-canvas text-ink antialiased;
+    /* The whole page is the field: faint yard lines over warm mowing stripes */
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 calc(100% / var(--yards) - 1px),
+        color-mix(in oklab, var(--color-paper) 6%, transparent)
+          calc(100% / var(--yards) - 1px) calc(100% / var(--yards))
+      ),
+      repeating-linear-gradient(
+        90deg,
+        var(--color-turf) 0 calc(50% / var(--yards)),
+        var(--color-turf-light) calc(50% / var(--yards))
+          calc(100% / var(--yards))
+      );
   }
 
   /* The sticky header would cover anchored sections without this offset */
@@ -79,7 +104,7 @@
     left: -22vmax;
     background: radial-gradient(
       circle,
-      color-mix(in oklab, var(--color-brand) 16%, transparent),
+      color-mix(in oklab, var(--color-brand) 10%, transparent),
       transparent 65%
     );
     animation: backdrop-drift 28s ease-in-out infinite alternate;
@@ -110,17 +135,6 @@
     outline-offset: -8px;
   }
 
-  .avatar-float {
-    animation: avatar-float 6s ease-in-out infinite;
-  }
-
-  /* Tilt angles come from CSS variables set by the Avatar component */
-  .avatar-tilt {
-    transform: perspective(800px) rotateX(var(--tilt-x, 0deg))
-      rotateY(var(--tilt-y, 0deg));
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
   .spotlight {
     position: relative;
     /* New stacking context: the glow paints above the card background, below its content */
@@ -148,6 +162,74 @@
       opacity: 1;
     }
   }
+
+  /* The hero is the painted part of the field: yard lines, hash marks and numbers */
+  .hero-field {
+    position: relative;
+    isolation: isolate;
+    /* Room for the hash marks and yard numbers under the hero content */
+    padding-bottom: 7rem;
+    /* Yard numbers are sized from this width, so they line up with the yard lines */
+    container-type: inline-size;
+  }
+
+  .hero-field::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      repeating-linear-gradient(
+          90deg,
+          color-mix(in oklab, var(--color-paper) 35%, transparent) 0 2px,
+          transparent 2px calc(20% / var(--yards))
+        )
+        left 0 bottom 5rem / 100% 0.875rem no-repeat,
+      repeating-linear-gradient(
+        90deg,
+        transparent 0 calc(100% / var(--yards) - 3px),
+        color-mix(in oklab, var(--color-paper) 22%, transparent)
+          calc(100% / var(--yards) - 3px) calc(100% / var(--yards))
+      );
+    /* Faint behind the headline, fully painted near the yard numbers */
+    mask-image: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.3),
+      #000 75%,
+      transparent
+    );
+  }
+
+  .yard-numbers {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    display: flex;
+    /* Starts half a segment in, so each number is centred on its yard line */
+    padding-inline-start: calc(50cqi / var(--yards));
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    color: color-mix(in oklab, var(--color-paper) 28%, transparent);
+  }
+
+  .yard-numbers li {
+    width: calc(100cqi / var(--yards));
+    text-align: center;
+  }
+
+  /* Small screens show fewer yard lines, so only the five middle numbers fit */
+  @media (width < 40rem) {
+    .yard-numbers li:nth-child(-n + 2),
+    .yard-numbers li:nth-last-child(-n + 2) {
+      display: none;
+    }
+  }
+
+  /* Thin cream rim: keeps the mascot's black line art readable on the dark turf */
+  .mascot-outline {
+    filter: drop-shadow(0 0 1px var(--color-paper))
+      drop-shadow(0 0 1px var(--color-paper));
+  }
 }
 
 @keyframes backdrop-drift {
@@ -159,24 +241,8 @@
   }
 }
 
-@keyframes avatar-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .backdrop-glow,
-  .avatar-float {
+  .backdrop-glow {
     animation: none;
-  }
-
-  .avatar-tilt {
-    transform: none;
-    transition: none;
   }
 }

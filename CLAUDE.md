@@ -40,3 +40,4 @@ All site content, code, comments and commits are in English.
 - Two HTML entries (`index.html`, `404.html`) registered in `vite.config.ts`: global setup (fonts, CSS) goes in `src/mount.tsx` so both pages get it
 - `404.html` must stay `noindex`: Cloudflare Pages serves it with a 404 status for unknown routes, but `/404.html` itself returns 200
 - Sticky header: anchored sections get `scroll-margin-top` in `src/index.css`; keep it larger than the header height if the header grows
+- Football field background: `--yards` on `:root` (10, or 6 below 40rem) drives the yard lines on `body` and `.hero-field` and the width of the yard numbers. Change it in one place, or the numbers stop lining up with the lines

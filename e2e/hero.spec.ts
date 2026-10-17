@@ -22,8 +22,8 @@ test('offers an email contact link', async ({ page }) => {
   ).toHaveAttribute('href', `mailto:${site.email}`);
 });
 
-test('renders the avatar with descriptive alt text', async ({ page }) => {
-  await expect(
-    page.getByRole('img', { name: `Illustrated portrait of ${site.name}` }),
-  ).toBeVisible();
+test('shows the mascot as a decorative image', async ({ page }) => {
+  const mascot = page.locator('#top img');
+  await expect(mascot).toBeVisible();
+  await expect(mascot).toHaveAttribute('alt', '');
 });
