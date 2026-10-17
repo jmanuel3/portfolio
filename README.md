@@ -9,6 +9,7 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 - **React + TypeScript** — UI and type safety
 - **Vite** — dev server and multi-page build (home + 404)
 - **Tailwind CSS v4** — styling via the `@tailwindcss/vite` plugin
+- **stacked-alpha-video** — transparent video in every browser (AV1 with an HEVC fallback, composited in WebGL)
 - **Playwright + axe** — end-to-end and accessibility tests on desktop and mobile
 - **oxlint + Prettier** — linting and formatting
 - **GitHub Actions** — CI on every push and pull request
@@ -49,6 +50,19 @@ npm run test:e2e
 - Dependabot for dependency updates
 - No secrets in the repository
 
+## Mascot run
+
+On load, the mascot crouches, sprints and stops to face the visitor while the
+painted field slides past in step. Click it to replay.
+
+- The run is a transparent video in Jake Archibald's
+  [stacked-alpha](https://jakearchibald.com/2024/video-with-transparency/)
+  format: colour on top, alpha below, recombined in WebGL
+- The video and its renderer load after the page, so the static pose is the
+  LCP image and performance is unchanged
+- Under 5 seconds and plays once (WCAG 2.2.2); reduced motion and devices
+  without GPU rendering get the static pose
+
 ## SEO
 
 - Social preview metadata (Open Graph), `robots.txt` and `sitemap.xml`
@@ -68,7 +82,7 @@ src/
 ├── content/            # Typed personal data reused across sections
 ├── features/
 │   ├── contact/        # Contact call to action
-│   ├── hero/           # Hero with the mascot and painted yard markings
+│   ├── hero/           # Hero, mascot run and painted field markings
 │   ├── not-found/      # Custom 404 page
 │   ├── projects/       # Components, types and typed content data
 │   └── services/       # Services cards with mascot illustrations
@@ -96,6 +110,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Custom 404 page with real 404 status
 - [x] Sticky header with logo and section nav
 - [x] Football field background with the mascot in the hero
+- [x] Mascot run with the field sliding in step
 - [ ] Custom domain
 
 ## License

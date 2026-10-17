@@ -1,12 +1,15 @@
 import { buttonPrimary, buttonSecondary } from '../../components/ui/button';
 import { ExternalLink } from '../../components/ui/ExternalLink';
-import mascotReady from '../../assets/mascots/mascot-ready.webp';
 import { site } from '../../content/site';
-import { YardNumbers } from './YardNumbers';
+import { FieldMarkings } from './FieldMarkings';
+import { MascotStage } from './MascotStage';
+import { useMascotRun } from './useMascotRun';
 
 export function Hero() {
+  const run = useMascotRun();
+
   return (
-    <div className="hero-field">
+    <div className="hero-field" data-run={run.state}>
       <section
         id="top"
         aria-labelledby="hero-heading"
@@ -51,17 +54,9 @@ export function Hero() {
           </ul>
         </div>
 
-        {/* Decorative: the heading already names who this page is about */}
-        <img
-          src={mascotReady}
-          alt=""
-          width={471}
-          height={560}
-          fetchPriority="high"
-          className="mascot-outline h-64 w-auto shrink-0 sm:h-80"
-        />
+        <MascotStage {...run} />
       </section>
-      <YardNumbers />
+      <FieldMarkings />
     </div>
   );
 }

@@ -40,4 +40,7 @@ All site content, code, comments and commits are in English.
 - Two HTML entries (`index.html`, `404.html`) registered in `vite.config.ts`: global setup (fonts, CSS) goes in `src/mount.tsx` so both pages get it
 - `404.html` must stay `noindex`: Cloudflare Pages serves it with a 404 status for unknown routes, but `/404.html` itself returns 200
 - Sticky header: anchored sections get `scroll-margin-top` in `src/index.css`; keep it larger than the header height if the header grows
-- Football field background: `--yards` on `:root` (10, or 6 below 40rem) drives the yard lines on `body` and `.hero-field` and the width of the yard numbers. Change it in one place, or the numbers stop lining up with the lines
+- Football field background: `--yards` on `:root` (10, or 6 below 40rem) drives the yard lines on `body` and `.field-markings` and the width of the yard numbers. Change it in one place, or the numbers stop lining up with the lines
+- Mascot run: `mascot-ready.webp`, both run videos and `mascot-hello.webp` share one 508×560 box (first frame, run, last frame), so every swap is seamless. The `field-advance` keyframes in `src/index.css` are timed to the video (95 frames at 24 fps): re-encoding the run means re-timing them
+- Run videos use the stacked-alpha format (colour on top, alpha below). Encode with the AV1 and HEVC commands in the `stacked-alpha-video` README; the HEVC file is the Safari fallback
+- The run only starts with hardware WebGL: software renderers (CI, Lighthouse) show the static pose. E2E tests report a fake GPU renderer to cover the run
