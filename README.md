@@ -33,16 +33,18 @@ npm run test:e2e
 
 ## Scripts
 
-| Command                 | Description                         |
-| ----------------------- | ----------------------------------- |
-| `npm run dev`           | Start the dev server                |
-| `npm run build`         | Type-check and build for production |
-| `npm run preview`       | Preview the production build        |
-| `npm run lint`          | Lint with oxlint                    |
-| `npm run format`        | Format with Prettier                |
-| `npm run format:check`  | Check formatting (used in CI)       |
-| `npm run typecheck:e2e` | Type-check the E2E tests            |
-| `npm run test:e2e`      | Run Playwright E2E and a11y tests   |
+| Command                 | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `npm run dev`           | Start the dev server                          |
+| `npm run build`         | Type-check and build for production           |
+| `npm run preview`       | Preview the production build                  |
+| `npm run lint`          | Lint with oxlint                              |
+| `npm run format`        | Format with Prettier                          |
+| `npm run format:check`  | Check formatting (used in CI)                 |
+| `npm run typecheck:e2e` | Type-check the E2E tests                      |
+| `npm run test:e2e`      | Run Playwright E2E and a11y tests             |
+| `npm run knip`          | Find unused files, exports and dependencies   |
+| `npm run check:assets`  | Find unused images and videos (after `build`) |
 
 ## Security
 
@@ -94,6 +96,7 @@ src/
 └── not-found.tsx       # Entry point (404 page)
 404.html                # 404 entry, built alongside index.html
 e2e/                    # Playwright E2E and accessibility tests
+scripts/                # Repository checks run in CI
 public/_headers         # Security headers for Cloudflare Pages
 ```
 
