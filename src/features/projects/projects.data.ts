@@ -48,12 +48,8 @@ export const projects: readonly Project[] = [
     name: 'Ledel',
     kind: 'client',
     summary: 'Production website for a dermo-aesthetics clinic.',
-    highlights: [
-      'Astro frontend and Node.js + MongoDB backend',
-      'Ongoing SEO work for a live client site',
-    ],
+    highlights: ['Astro frontend and Node.js + MongoDB backend'],
     stack: ['Astro', 'TypeScript', 'Node.js', 'MongoDB'],
-    liveUrl: 'https://ledeldermoestetica.com',
     repositories: [],
   },
 ];
