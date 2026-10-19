@@ -23,7 +23,7 @@ All site content, code, comments and commits are in English.
 - No dead code: CI runs `knip` (unused files, exports, dependencies) and `check:assets` (files in `src/assets` that no build output uses). Only export what another module imports
 - Mobile-first, accessible (semantic HTML, visible focus, AA contrast)
 - Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `surface`, `line`, `ink`, `accent`, `brand`, `paper`, `paper-ink`, `paper-muted`), never raw palette colors or `dark:` variants
-- `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`
+- `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`. On cream `paper` cards it's the other way round: `accent` is unreadable, so links use `brand` (`ExternalLink tone="paper"`)
 - Display font (`font-display`) for headings only; body text uses the system stack
 
 ## Security baseline
@@ -47,3 +47,4 @@ All site content, code, comments and commits are in English.
 - The run only starts with hardware WebGL: software renderers (CI, Lighthouse) show the static pose. E2E tests report a fake GPU renderer to cover the run
 - Social preview: LinkedIn and WhatsApp cache `og:image` by URL. When `public/og-image.png` changes, bump the `?v=` query on `og:image` in `index.html`, then refresh with LinkedIn Post Inspector
 - `check:assets` compares `src/assets` with `dist/assets`, so it needs a fresh build. Vite inlines assets under 4 KB, which the check would report as unused: keep such icons in `public/` or set `build.assetsInlineLimit`
+- Project screenshots: full-page captures at 880 px wide in `src/assets/projects/`, mapped by slug in `project.screenshots.ts` (not in `projects.data.ts`, which the E2E tests import in Node). Their `width`/`height` must match the file: the height sets how long the hover scroll lasts
