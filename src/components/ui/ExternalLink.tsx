@@ -1,18 +1,29 @@
 import type { ReactNode } from 'react';
 
+// Yellow is unreadable on cream: links on paper cards use the brand red (AA on paper)
+const TONES = {
+  dark: 'text-accent',
+  paper: 'text-brand focus-visible:outline-paper-ink',
+} as const;
+
 interface ExternalLinkProps {
   href: string;
   children: ReactNode;
+  tone?: keyof typeof TONES;
 }
 
-export function ExternalLink({ href, children }: ExternalLinkProps) {
+export function ExternalLink({
+  href,
+  children,
+  tone = 'dark',
+}: ExternalLinkProps) {
   return (
     <a
       href={href}
       target="_blank"
       // noopener: the new tab can't control this page; noreferrer: don't leak the URL
       rel="noopener noreferrer"
-      className="font-medium text-accent underline-offset-4 hover:underline"
+      className={`font-medium underline-offset-4 hover:underline ${TONES[tone]}`}
     >
       {children}
       {/* SVG instead of the ↗ character, which some systems render as an emoji */}

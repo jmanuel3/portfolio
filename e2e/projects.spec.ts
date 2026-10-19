@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { projects } from '../src/features/projects/projects.data';
 
 test.beforeEach(async ({ page }) => {
@@ -26,16 +26,41 @@ test('opens every external link safely in a new tab', async ({ page }) => {
   }
 });
 
-test('tracks the pointer for the card spotlight', async ({
-  page,
-  isMobile,
-}) => {
-  test.skip(isMobile, 'The spotlight is a hover-only effect');
+test('shows a decorative screenshot of every project', async ({ page }) => {
+  const screenshots = page
+    .getByRole('region', { name: 'Projects' })
+    .locator('article img');
+  await expect(screenshots).toHaveCount(projects.length);
 
-  const card = page.getByRole('article').first();
+  for (const screenshot of await screenshots.all()) {
+    await expect(screenshot).toHaveAttribute('alt', '');
+  }
+});
+
+const hoverFirstCard = async (page: Page) => {
+  const card = page.locator('.project-card').first();
   await card.hover();
+  // The computed translate follows the transition frame by frame
+  return () =>
+    card.locator('img').evaluate((img) => getComputedStyle(img).translate);
+};
 
-  await expect
-    .poll(() => card.evaluate((el) => el.style.getPropertyValue('--pointer-x')))
-    .toMatch(/px$/);
+test.describe('on hover', () => {
+  test.skip(({ isMobile }) => isMobile, 'Touch screens have no hover');
+
+  test('scrolls through the screenshot', async ({ page }) => {
+    const translate = await hoverFirstCard(page);
+    await expect.poll(translate).not.toBe('none');
+  });
+
+  test.describe('with reduced motion', () => {
+    test.use({ reducedMotion: 'reduce' });
+
+    test('keeps the screenshot still', async ({ page }) => {
+      const translate = await hoverFirstCard(page);
+      // Proving that nothing moves needs a wait longer than the scroll's first frames
+      await page.waitForTimeout(300);
+      expect(await translate()).toBe('none');
+    });
+  });
 });

@@ -24,3 +24,17 @@ test('shows the current year and links to the source in the footer', async ({
     footer.getByRole('link', { name: /View source/ }),
   ).toHaveAttribute('href', site.links.repo);
 });
+
+test('tracks the pointer for the card spotlight', async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'The spotlight is a hover-only effect');
+
+  const card = page.locator('#contact .spotlight');
+  await card.hover();
+
+  await expect
+    .poll(() => card.evaluate((el) => el.style.getPropertyValue('--pointer-x')))
+    .toMatch(/px$/);
+});

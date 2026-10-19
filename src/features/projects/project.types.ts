@@ -1,3 +1,4 @@
+export type ProjectSlug = 'ndl-capital-group' | 'liftr' | 'ledel';
 export type ProjectKind = 'client' | 'personal';
 
 interface Repository {
@@ -5,8 +6,15 @@ interface Repository {
   url: string;
 }
 
+// Full-page capture of the site; width and height must match the image file
+export interface Screenshot {
+  src: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
-  slug: string; // stable key for React lists and future anchors
+  slug: ProjectSlug; // stable key for React lists, anchors and screenshots
   name: string;
   kind: ProjectKind;
   summary: string;

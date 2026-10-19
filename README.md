@@ -86,7 +86,7 @@ src/
 │   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero, mascot run and painted field markings
 │   ├── not-found/      # Custom 404 page
-│   ├── projects/       # Components, types and typed content data
+│   ├── projects/       # Cards with scrolling site screenshots, types and data
 │   └── services/       # Services cards with mascot illustrations
 ├── assets/             # Images processed and hashed by Vite
 ├── App.tsx             # Home page composition
