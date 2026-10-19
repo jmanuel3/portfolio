@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { site } from '../src/content/site';
 
 test.beforeEach(async ({ page }) => {
@@ -16,7 +16,7 @@ test('links the logo back to the top of the page', async ({ page }) => {
   await expect(page.locator('#top')).toHaveCount(1);
 });
 
-test('keeps anchored sections clear of the sticky header', async ({ page }) => {
+const expectSectionsClearOfHeader = async (page: Page) => {
   const header = page.getByRole('banner');
   const links = page
     .getByRole('navigation', { name: 'Main' })
@@ -35,4 +35,19 @@ test('keeps anchored sections clear of the sticky header', async ({ page }) => {
       headerBox!.y + headerBox!.height,
     );
   }
+};
+
+test('keeps anchored sections clear of the sticky header', async ({ page }) => {
+  await expectSectionsClearOfHeader(page);
+});
+
+test.describe('on the narrowest phones', () => {
+  // At 320 px the nav wraps under the logo, so the header is at its tallest
+  test.use({ viewport: { width: 320, height: 640 } });
+
+  test('keeps anchored sections clear of the two-row header', async ({
+    page,
+  }) => {
+    await expectSectionsClearOfHeader(page);
+  });
 });

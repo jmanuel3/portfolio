@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { site } from '../src/content/site';
 
-test('offers the CV as a download in the hero and the contact section', async ({
+test('offers the CV as a download in the hero, About and contact sections', async ({
   page,
 }) => {
   await page.goto('/');
   const links = page.getByRole('link', { name: 'Download CV (PDF)' });
-  await expect(links).toHaveCount(2);
+  await expect(links).toHaveCount(3);
 
   for (const link of await links.all()) {
     await expect(link).toHaveAttribute('href', site.cv);

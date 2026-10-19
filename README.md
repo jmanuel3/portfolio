@@ -83,6 +83,7 @@ src/
 │   └── ui/             # Shared, domain-agnostic UI and button styles
 ├── content/            # Typed personal data reused across sections
 ├── features/
+│   ├── about/          # Bento grid with portrait and background
 │   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero, mascot run and painted field markings
 │   ├── not-found/      # Custom 404 page
@@ -102,7 +103,7 @@ public/_headers         # Security headers for Cloudflare Pages
 
 ## Roadmap
 
-- [x] Hero section with interactive avatar
+- [x] Hero section
 - [x] Projects section
 - [x] Services section
 - [x] Playwright E2E and accessibility tests
@@ -115,6 +116,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Football field background with the mascot in the hero
 - [x] Mascot run with the field sliding in step
 - [x] Downloadable CV
+- [x] About section in a bento grid
 - [ ] Custom domain
 
 ## License

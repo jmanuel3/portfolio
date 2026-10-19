@@ -23,7 +23,7 @@ All site content, code, comments and commits are in English.
 - No dead code: CI runs `knip` (unused files, exports, dependencies) and `check:assets` (files in `src/assets` that no build output uses). Only export what another module imports
 - Mobile-first, accessible (semantic HTML, visible focus, AA contrast)
 - Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `surface`, `line`, `ink`, `accent`, `brand`, `paper`, `paper-ink`, `paper-muted`), never raw palette colors or `dark:` variants
-- `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`. On cream `paper` cards it's the other way round: `accent` is unreadable, so links use `brand` (`ExternalLink tone="paper"`)
+- `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`. On cream `paper` cards it's the other way round: `accent` is unreadable, so links use `brand` (`tone="paper"` on `ExternalLink` and `DownloadLink`)
 - Display font (`font-display`) for headings only; body text uses the system stack
 
 ## Security baseline
@@ -40,7 +40,7 @@ All site content, code, comments and commits are in English.
 - The site URL is hardcoded in `index.html`, `public/robots.txt` and `public/sitemap.xml` (static files can't import `site.ts`): update all three when the domain changes
 - Two HTML entries (`index.html`, `404.html`) registered in `vite.config.ts`: global setup (fonts, CSS) goes in `src/mount.tsx` so both pages get it
 - `404.html` must stay `noindex`: Cloudflare Pages serves it with a 404 status for unknown routes, but `/404.html` itself returns 200
-- Sticky header: anchored sections get `scroll-margin-top` in `src/index.css`; keep it larger than the header height if the header grows
+- Sticky header: anchored sections get `scroll-margin-top` in `src/index.css`; keep it larger than the header height if the header grows. At 320 px the nav wraps under the logo (tallest header, ~75 px): adding a nav item means rechecking that width
 - Football field background: `--yards` on `:root` (10, or 6 below 40rem) drives the yard lines on `body` and `.field-markings` and the width of the yard numbers. Change it in one place, or the numbers stop lining up with the lines
 - Mascot run: `mascot-ready.webp`, both run videos and `mascot-hello.webp` share one 508×560 box (first frame, run, last frame), so every swap is seamless. The `field-advance` keyframes in `src/index.css` are timed to the video (95 frames at 24 fps): re-encoding the run means re-timing them
 - Run videos use the stacked-alpha format (colour on top, alpha below). Encode with the AV1 and HEVC commands in the `stacked-alpha-video` README; the HEVC file is the Safari fallback

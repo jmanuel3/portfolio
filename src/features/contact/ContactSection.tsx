@@ -10,10 +10,7 @@ import { MascotPatch } from '../../components/ui/MascotPatch';
 export function ContactSection() {
   return (
     <Section id="contact" title="Got a project in mind?">
-      <SpotlightCard
-        as="div"
-        className="stitched grid items-center gap-8 rounded-2xl border border-line bg-surface p-8 sm:p-12 md:grid-cols-[1fr_auto]"
-      >
+      <SpotlightCard className="stitched grid items-center gap-8 rounded-2xl border border-line bg-surface p-8 sm:p-12 md:grid-cols-[1fr_auto]">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium text-ink-muted">
             <span
