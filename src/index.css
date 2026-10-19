@@ -7,7 +7,6 @@
  */
 @theme {
   --color-canvas: #121014;
-  --color-surface: #1c191f;
   --color-line: #3a3530;
   --color-line-strong: #57504a;
   --color-ink: #e9e4d4;
@@ -133,34 +132,6 @@
   .stitched {
     outline: 2px dashed var(--color-line-strong);
     outline-offset: -8px;
-  }
-
-  .spotlight {
-    position: relative;
-    /* New stacking context: the glow paints above the card background, below its content */
-    isolation: isolate;
-  }
-
-  .spotlight::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: radial-gradient(
-      400px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-      color-mix(in oklab, var(--color-accent) 10%, transparent),
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  /* Only devices with a real hover (mouse, trackpad) get the effect */
-  @media (hover: hover) {
-    .spotlight:hover::before {
-      opacity: 1;
-    }
   }
 
   /* Project screenshot: a browser-sized window onto a full-page capture */
