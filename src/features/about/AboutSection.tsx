@@ -60,7 +60,7 @@ export function AboutSection() {
           <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
             {QUICK_FACTS.map(({ value, label }) => (
               // Term first in the markup for screen readers, value first on screen
-              <div key={label} className="flex flex-col-reverse">
+              <div key={label} className="flex flex-col-reverse justify-end">
                 <dt className="mt-1 text-xs">{label}</dt>
                 <dd className="font-display text-2xl leading-none text-brand">
                   {value}

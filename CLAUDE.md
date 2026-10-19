@@ -22,7 +22,7 @@ All site content, code, comments and commits are in English.
 - Conventional Commits, small and atomic
 - No dead code: CI runs `knip` (unused files, exports, dependencies) and `check:assets` (files in `src/assets` that no build output uses). Only export what another module imports
 - Mobile-first, accessible (semantic HTML, visible focus, AA contrast)
-- Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `surface`, `line`, `ink`, `accent`, `brand`, `paper`, `paper-ink`, `paper-muted`), never raw palette colors or `dark:` variants
+- Dark theme only: use semantic tokens from `src/index.css` (`canvas`, `line`, `ink`, `accent`, `brand`, `paper`, `paper-ink`, `paper-muted`), never raw palette colors or `dark:` variants
 - `brand` (red) fails AA contrast for small text on `canvas`: use it only for large display text and decoration; links and buttons use `accent`. On cream `paper` cards it's the other way round: `accent` is unreadable, so links use `brand` (`tone="paper"` on `ExternalLink` and `DownloadLink`)
 - Display font (`font-display`) for headings only; body text uses the system stack
 
