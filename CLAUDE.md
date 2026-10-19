@@ -48,3 +48,4 @@ All site content, code, comments and commits are in English.
 - Social preview: LinkedIn and WhatsApp cache `og:image` by URL. When `public/og-image.png` changes, bump the `?v=` query on `og:image` in `index.html`, then refresh with LinkedIn Post Inspector
 - `check:assets` compares `src/assets` with `dist/assets`, so it needs a fresh build. Vite inlines assets under 4 KB, which the check would report as unused: keep such icons in `public/` or set `build.assetsInlineLimit`
 - Project screenshots: full-page captures at 880 px wide in `src/assets/projects/`, mapped by slug in `project.screenshots.ts` (not in `projects.data.ts`, which the E2E tests import in Node). Their `width`/`height` must match the file: the height sets how long the hover scroll lasts
+- CV: `public/jose-manuel-carrasco-cv.pdf` is linked from `site.cv` and shared outside the site. Replace the file under the same name so existing links keep working, and keep its facts in sync with `projects.data.ts`

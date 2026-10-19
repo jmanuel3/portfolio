@@ -114,6 +114,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Sticky header with logo and section nav
 - [x] Football field background with the mascot in the hero
 - [x] Mascot run with the field sliding in step
+- [x] Downloadable CV
 - [ ] Custom domain
 
 ## License

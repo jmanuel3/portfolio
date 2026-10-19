@@ -1,5 +1,6 @@
 import mascotCelebrate from '../../assets/mascots/mascot-celebrate.webp';
 import { buttonPrimary } from '../../components/ui/button';
+import { DownloadLink } from '../../components/ui/DownloadLink';
 import { ExternalLink } from '../../components/ui/ExternalLink';
 import { Section } from '../../components/ui/Section';
 import { SpotlightCard } from '../../components/ui/SpotlightCard';
@@ -34,6 +35,7 @@ export function ContactSection() {
             </a>
             <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
             <ExternalLink href={site.links.github}>GitHub</ExternalLink>
+            <DownloadLink href={site.cv}>Download CV</DownloadLink>
           </div>
 
           <p className="mt-4 text-sm text-ink-muted">I reply within a day.</p>
