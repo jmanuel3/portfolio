@@ -1,4 +1,5 @@
 import { buttonPrimary, buttonSecondary } from '../../components/ui/button';
+import { DownloadLink } from '../../components/ui/DownloadLink';
 import { ExternalLink } from '../../components/ui/ExternalLink';
 import { site } from '../../content/site';
 import { FieldMarkings } from './FieldMarkings';
@@ -42,7 +43,7 @@ export function Hero() {
           </div>
 
           <ul
-            aria-label="Social links"
+            aria-label="Profiles and CV"
             className="mt-6 flex justify-center gap-5 text-sm motion-safe:animate-fade-up motion-safe:[animation-delay:240ms] md:justify-start"
           >
             <li>
@@ -50,6 +51,9 @@ export function Hero() {
             </li>
             <li>
               <ExternalLink href={site.links.linkedin}>LinkedIn</ExternalLink>
+            </li>
+            <li>
+              <DownloadLink href={site.cv}>Download CV</DownloadLink>
             </li>
           </ul>
         </div>
