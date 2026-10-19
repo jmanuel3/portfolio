@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jmanuel.pages.dev/sitemap.xml
+Sitemap: https://jmanuelcarrasco.com/sitemap.xml

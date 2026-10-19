@@ -2,7 +2,7 @@
 
 Personal portfolio and freelance site of a full-stack developer based in Copenhagen.
 
-**Live:** [jmanuel.pages.dev](https://jmanuel.pages.dev)
+**Live:** [jmanuelcarrasco.com](https://jmanuelcarrasco.com)
 
 ## Tech stack
 
