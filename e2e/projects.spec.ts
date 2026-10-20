@@ -37,30 +37,61 @@ test('shows a decorative screenshot of every project', async ({ page }) => {
   }
 });
 
-const hoverFirstCard = async (page: Page) => {
-  const card = page.locator('.project-card').first();
-  await card.hover();
-  // The computed translate follows the transition frame by frame
-  return () =>
-    card.locator('img').evaluate((img) => getComputedStyle(img).translate);
+// The computed translate follows the transition frame by frame
+const firstScreenshotTranslate = (page: Page) => () =>
+  page
+    .locator('.site-preview img')
+    .first()
+    .evaluate((img) => getComputedStyle(img).translate);
+
+const hoverFirstScreenshot = async (page: Page) => {
+  await page.locator('.site-preview').first().hover();
+  return firstScreenshotTranslate(page);
 };
 
 test.describe('on hover', () => {
   test.skip(({ isMobile }) => isMobile, 'Touch screens have no hover');
 
   test('scrolls through the screenshot', async ({ page }) => {
-    const translate = await hoverFirstCard(page);
+    const translate = await hoverFirstScreenshot(page);
     await expect.poll(translate).not.toBe('none');
+  });
+
+  test('keeps the screenshot still while the card text is read', async ({
+    page,
+  }) => {
+    await page.getByRole('heading', { level: 3 }).first().hover();
+    // Proving that nothing moves needs a wait longer than the scroll's first frames
+    await page.waitForTimeout(300);
+    expect(await firstScreenshotTranslate(page)()).toBe('none');
   });
 
   test.describe('with reduced motion', () => {
     test.use({ reducedMotion: 'reduce' });
 
     test('keeps the screenshot still', async ({ page }) => {
-      const translate = await hoverFirstCard(page);
+      const translate = await hoverFirstScreenshot(page);
       // Proving that nothing moves needs a wait longer than the scroll's first frames
       await page.waitForTimeout(300);
       expect(await translate()).toBe('none');
     });
   });
+});
+
+test('keeps case studies collapsed until the visitor opens them', async ({
+  page,
+}) => {
+  const withCaseStudy = projects.filter((project) => project.caseStudy);
+  expect(withCaseStudy.length).toBeGreaterThan(0);
+
+  for (const project of withCaseStudy) {
+    const card = page.getByRole('article').filter({
+      has: page.getByRole('heading', { level: 3, name: project.name }),
+    });
+    const decisions = card.getByRole('heading', { name: 'Key decisions' });
+
+    await expect(decisions).toBeHidden();
+    await card.getByText('How I built it').click();
+    await expect(decisions).toBeVisible();
+  }
 });

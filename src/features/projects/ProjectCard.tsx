@@ -1,5 +1,6 @@
 import { ExternalLink } from '../../components/ui/ExternalLink';
 import { Tag } from '../../components/ui/Tag';
+import { CaseStudyDetails } from './CaseStudyDetails';
 import { PROJECT_SCREENSHOTS } from './project.screenshots';
 import { SitePreview } from './SitePreview';
 import type { Project, ProjectKind } from './project.types';
@@ -26,6 +27,7 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
     highlights,
     stack,
     liveUrl,
+    caseStudy,
     repositories,
   } = project;
 
@@ -35,7 +37,7 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
 
   return (
     <article
-      className={`project-card stitched grid h-full gap-6 rounded-2xl bg-paper p-6 text-paper-ink motion-safe:transition-transform motion-safe:hover:-translate-y-1 sm:p-7 ${layout}`}
+      className={`stitched grid h-full gap-6 rounded-2xl bg-paper p-6 text-paper-ink motion-safe:transition-transform motion-safe:hover:-translate-y-1 sm:p-7 ${layout}`}
     >
       <SitePreview screenshot={PROJECT_SCREENSHOTS[slug]} liveUrl={liveUrl} />
 
@@ -89,6 +91,14 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
           )}
         </div>
       </div>
+
+      {/* Below preview and details, across the full card width */}
+      {caseStudy && (
+        <CaseStudyDetails
+          caseStudy={caseStudy}
+          className={featured ? 'md:col-span-2' : ''}
+        />
+      )}
     </article>
   );
 }
