@@ -64,6 +64,31 @@ export const projects: readonly Project[] = [
     ],
     stack: ['Vanilla JS', 'PWA', 'Playwright', 'GitHub Actions'],
     liveUrl: 'https://liftr-7u9.pages.dev',
+    caseStudy: {
+      outcome:
+        'Live as an installable app that works fully offline, ready to share with friends at the gym.',
+      challenge:
+        'I wanted a simple tool to keep friends and myself consistent at the gym: log sessions, see progress and get the next weight to lift, with no accounts or subscriptions.',
+      decisions: [
+        {
+          title: 'Data stays on the device',
+          detail:
+            'No accounts and no server, so anyone can start in seconds, it works offline at the gym, and training data never leaves the phone.',
+        },
+        {
+          title: 'Built with an AI assistant',
+          detail:
+            'I used LIFTR to learn AI-assisted development. I set the product direction and an AI wrote most of the code, with automated end-to-end tests in CI as the safety net.',
+        },
+        {
+          title: 'Tests that paid off',
+          detail:
+            'Those tests caught a real layout bug at 320 px before any user saw it.',
+        },
+      ],
+      lesson:
+        'Review each AI-generated change in depth before accepting it, so I understand every part of the code as if I had written it.',
+    },
     repositories: [
       { label: 'Source', url: 'https://github.com/jmanuel3/liftr' },
     ],

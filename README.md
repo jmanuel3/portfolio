@@ -117,7 +117,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Mascot run with the field sliding in step
 - [x] Downloadable CV
 - [x] About section in a bento grid
-- [x] Case study for the featured client project
+- [x] Short case studies on the project cards
 - [ ] Custom domain
 
 ## License
