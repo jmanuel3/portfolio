@@ -4,6 +4,16 @@ Personal portfolio and freelance site of a full-stack developer based in Copenha
 
 **Live:** [jmanuelcarrasco.com](https://jmanuelcarrasco.com)
 
+![Home page: hero with the mascot on the painted football field, and the first project card](docs/screenshot.webp)
+
+## Features
+
+- **Projects** with site screenshots that scroll on hover and short "How I built it" case studies
+- **About** in a bento grid, with a downloadable CV
+- **Mascot run** in the hero: a transparent video synced with the painted field
+- **Accessible by default**: keyboard navigation, AA contrast and reduced-motion support, checked with axe in CI
+- **Secure and fast**: strict security headers (A+ on securityheaders.com and SSL Labs) and a static build on Cloudflare Pages
+
 ## Tech stack
 
 - **React + TypeScript** — UI and type safety
@@ -87,7 +97,7 @@ src/
 │   ├── contact/        # Contact call to action
 │   ├── hero/           # Hero, mascot run and painted field markings
 │   ├── not-found/      # Custom 404 page
-│   ├── projects/       # Cards with scrolling site screenshots, types and data
+│   ├── projects/       # Project cards, case studies, types and data
 │   └── services/       # Services cards with mascot illustrations
 ├── assets/             # Images processed and hashed by Vite
 ├── App.tsx             # Home page composition
@@ -96,6 +106,7 @@ src/
 ├── mount.tsx           # Shared bootstrap for every HTML entry
 └── not-found.tsx       # Entry point (404 page)
 404.html                # 404 entry, built alongside index.html
+docs/                   # README assets
 e2e/                    # Playwright E2E and accessibility tests
 scripts/                # Repository checks run in CI
 public/_headers         # Security headers for Cloudflare Pages
@@ -118,7 +129,7 @@ public/_headers         # Security headers for Cloudflare Pages
 - [x] Downloadable CV
 - [x] About section in a bento grid
 - [x] Short case studies on the project cards
-- [ ] Custom domain
+- [x] Custom domain
 
 ## License
 
