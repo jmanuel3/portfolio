@@ -47,7 +47,7 @@ export const projects: readonly Project[] = [
         },
       ],
       lesson:
-        "Research each tool's setup and the hosting constraints before building: most of the time I lost went into integrations that didn't work the first time.",
+        'Add error monitoring and alerts from day one, so an issue like the email failure surfaces as an alert instead of a missing confirmation.',
     },
     repositories: [],
   },
