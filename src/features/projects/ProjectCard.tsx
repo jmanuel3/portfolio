@@ -32,7 +32,8 @@ export function ProjectCard({ project, number, flipped }: ProjectCardProps) {
   } = project;
 
   return (
-    <article className="stitched grid gap-6 rounded-2xl bg-paper p-6 text-paper-ink motion-safe:transition-transform motion-safe:hover:-translate-y-1 sm:p-7 md:grid-cols-2 md:items-start md:gap-8">
+    // Hover feedback: the card lifts, casts a shadow and its stitching turns brand red
+    <article className="stitched grid gap-6 rounded-2xl bg-paper p-6 text-paper-ink transition-[translate,box-shadow,outline-color] duration-300 hover:shadow-xl hover:shadow-black/40 hover:outline-brand motion-safe:hover:-translate-y-1 sm:p-7 md:grid-cols-2 md:items-start md:gap-8">
       <SitePreview screenshot={PROJECT_SCREENSHOTS[slug]} liveUrl={liveUrl} />
 
       {/* Pinning the text to the first cell lets the preview fill the second;
