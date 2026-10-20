@@ -147,10 +147,10 @@
     transition: translate 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Hover or keyboard focus scrolls through the page, then it eases back to the top */
+  /* Hovering the screenshot scrolls through the page, then it eases back to the top.
+     Only the screenshot itself: reading the rest of the card leaves it still */
   @media (prefers-reduced-motion: no-preference) {
-    .project-card:hover .site-preview img,
-    .project-card:focus-within .site-preview img {
+    .site-preview:hover img {
       translate: 0 calc(-100% + 100cqh);
       /* Same reading speed on every page: taller captures scroll for longer */
       transition: translate calc(var(--page-ratio) * 1.5s) linear;

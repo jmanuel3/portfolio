@@ -8,9 +8,9 @@ export const projects: readonly Project[] = [
     summary:
       'Bilingual (ES/EN) platform for an international real estate investment advisory firm.',
     highlights: [
-      'Booking system integrated with Google Calendar API via OAuth2',
-      'Fixed a production email failure by migrating from SMTP to Resend',
-      'Node.js/Express 5 backend with Prisma, Zod validation and PostgreSQL',
+      'Built solo, from competitor research to launch',
+      'Bilingual site with online booking on the Google Calendar API',
+      'Node.js/Express 5 API with Prisma, Zod and PostgreSQL',
     ],
     stack: [
       'Astro',
@@ -24,6 +24,31 @@ export const projects: readonly Project[] = [
       'Render',
     ],
     liveUrl: 'https://ndlcapitalgroup.com',
+    caseStudy: {
+      outcome:
+        'Live in Spanish and English, replacing a placeholder page. The firm already receives enquiries through it.',
+      challenge:
+        'The firm advises international investors on real estate in emerging markets. Its only web presence was a quick placeholder page that neither reflected the firm nor let investors book a call.',
+      decisions: [
+        {
+          title: 'The calendar is the single source of truth',
+          detail:
+            "Available slots come straight from the firm's Google Calendar, so nobody keeps a second schedule and double bookings can't happen.",
+        },
+        {
+          title: 'A booking never fails because of an email',
+          detail:
+            "Each booking is saved and added to the calendar first; confirmations are sent after, so a mail outage can't lose a client.",
+        },
+        {
+          title: 'Fixing a production email failure',
+          detail:
+            'After launch, confirmations stopped arriving. I traced it to the hosting network blocking outbound email over IPv6, moved to an HTTP-based email service and set up SPF and DKIM so messages land in the inbox.',
+        },
+      ],
+      lesson:
+        'Add error monitoring and alerts from day one, so an issue like the email failure surfaces as an alert instead of a missing confirmation.',
+    },
     repositories: [],
   },
   {

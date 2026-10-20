@@ -7,8 +7,8 @@ interface SitePreviewProps {
 }
 
 /*
- * The site's screenshot in a browser frame. On card hover or keyboard focus,
- * CSS scrolls it to the bottom of the page (see .site-preview in index.css).
+ * The site's screenshot in a browser frame. On hover, CSS scrolls it to the
+ * bottom of the page (see .site-preview in index.css).
  * Decorative: the card's heading and links already describe the project.
  */
 export function SitePreview({ screenshot, liveUrl }: SitePreviewProps) {
