@@ -1,5 +1,6 @@
 import { ExternalLink } from '../../components/ui/ExternalLink';
 import { Tag } from '../../components/ui/Tag';
+import { CaseStudyDetails } from './CaseStudyDetails';
 import { PROJECT_SCREENSHOTS } from './project.screenshots';
 import { SitePreview } from './SitePreview';
 import type { Project, ProjectKind } from './project.types';
@@ -26,6 +27,7 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
     highlights,
     stack,
     liveUrl,
+    caseStudy,
     repositories,
   } = project;
 
@@ -37,7 +39,12 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
     <article
       className={`project-card stitched grid h-full gap-6 rounded-2xl bg-paper p-6 text-paper-ink motion-safe:transition-transform motion-safe:hover:-translate-y-1 sm:p-7 ${layout}`}
     >
-      <SitePreview screenshot={PROJECT_SCREENSHOTS[slug]} liveUrl={liveUrl} />
+      {/* Side by side, the preview stays in view while the case study is read */}
+      <SitePreview
+        screenshot={PROJECT_SCREENSHOTS[slug]}
+        liveUrl={liveUrl}
+        className={featured ? 'md:sticky md:top-24' : ''}
+      />
 
       <div className="flex h-full flex-col">
         <div className="flex items-start justify-between gap-4">
@@ -69,6 +76,8 @@ export function ProjectCard({ project, number, featured }: ProjectCardProps) {
             </li>
           ))}
         </ul>
+
+        {caseStudy && <CaseStudyDetails caseStudy={caseStudy} />}
 
         {/* mt-auto pins the links to the bottom so cards in a row align */}
         <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6 text-sm">

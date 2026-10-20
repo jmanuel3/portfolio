@@ -4,6 +4,7 @@ import type { Screenshot } from './project.types';
 interface SitePreviewProps {
   screenshot: Screenshot;
   liveUrl?: string;
+  className?: string;
 }
 
 /*
@@ -11,7 +12,11 @@ interface SitePreviewProps {
  * CSS scrolls it to the bottom of the page (see .site-preview in index.css).
  * Decorative: the card's heading and links already describe the project.
  */
-export function SitePreview({ screenshot, liveUrl }: SitePreviewProps) {
+export function SitePreview({
+  screenshot,
+  liveUrl,
+  className = '',
+}: SitePreviewProps) {
   const { src, width, height } = screenshot;
   // Set through the DOM by React, not a style attribute, so the strict CSP allows it
   const pageRatio = { '--page-ratio': height / width } as CSSProperties;
@@ -19,7 +24,7 @@ export function SitePreview({ screenshot, liveUrl }: SitePreviewProps) {
   return (
     <div
       aria-hidden="true"
-      className="overflow-hidden rounded-lg border border-paper-muted/30 shadow-lg shadow-paper-ink/15"
+      className={`overflow-hidden rounded-lg border border-paper-muted/30 shadow-lg shadow-paper-ink/15 ${className}`}
     >
       <div className="flex items-center gap-1.5 bg-paper-muted/15 px-3 py-2">
         <span className="size-2 rounded-full bg-paper-muted/40" />

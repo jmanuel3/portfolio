@@ -64,3 +64,21 @@ test.describe('on hover', () => {
     });
   });
 });
+
+test('keeps case studies collapsed until the visitor opens them', async ({
+  page,
+}) => {
+  const withCaseStudy = projects.filter((project) => project.caseStudy);
+  expect(withCaseStudy.length).toBeGreaterThan(0);
+
+  for (const project of withCaseStudy) {
+    const card = page.locator('.project-card', {
+      has: page.getByRole('heading', { level: 3, name: project.name }),
+    });
+    const decisions = card.getByRole('heading', { name: 'Key decisions' });
+
+    await expect(decisions).toBeHidden();
+    await card.getByText('How I built it').click();
+    await expect(decisions).toBeVisible();
+  }
+});
