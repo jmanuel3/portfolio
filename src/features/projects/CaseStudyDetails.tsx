@@ -2,23 +2,17 @@ import type { CaseStudy } from './project.types';
 
 interface CaseStudyDetailsProps {
   caseStudy: CaseStudy;
-  className?: string;
 }
 
 /*
  * Native <details>: keyboard and screen reader support with no JavaScript.
  * Closed by default so the card stays scannable; recruiters open it if curious.
  */
-export function CaseStudyDetails({
-  caseStudy,
-  className = '',
-}: CaseStudyDetailsProps) {
+export function CaseStudyDetails({ caseStudy }: CaseStudyDetailsProps) {
   const { outcome, challenge, decisions, lesson } = caseStudy;
 
   return (
-    <details
-      className={`group border-t border-paper-muted/30 pt-5 text-sm ${className}`}
-    >
+    <details className="group @container border-t border-paper-muted/30 pt-5 text-sm md:col-span-2">
       <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-paper-muted/50 px-4 py-2 font-semibold transition-colors hover:border-brand focus-visible:outline-paper-ink [&::-webkit-details-marker]:hidden">
         How I built it
         {/* A plus whose vertical bar fades out: + when closed, − when open */}
@@ -41,7 +35,8 @@ export function CaseStudyDetails({
 
       <div className="mt-5 grid gap-6 text-paper-muted">
         {/* Outcome first: reviewers skim for results before process */}
-        <div className="grid gap-6 sm:grid-cols-2">
+        {/* Columns follow the card width, not the viewport */}
+        <div className="grid gap-6 @xl:grid-cols-2">
           <section>
             <h4 className="font-semibold text-paper-ink">Outcome</h4>
             <p className="mt-1">{outcome}</p>
@@ -54,7 +49,7 @@ export function CaseStudyDetails({
 
         <section>
           <h4 className="font-semibold text-paper-ink">Key decisions</h4>
-          <ul className="mt-3 grid gap-3 md:grid-cols-3">
+          <ul className="mt-3 grid gap-3 @3xl:grid-cols-3">
             {decisions.map(({ title, detail }) => (
               <li
                 key={title}
