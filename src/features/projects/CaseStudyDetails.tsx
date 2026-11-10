@@ -1,18 +1,41 @@
+import { useEffect, useRef } from 'react';
 import type { CaseStudy } from './project.types';
 
 interface CaseStudyDetailsProps {
   caseStudy: CaseStudy;
+  // Fragment target, so a shared link (e.g. a LinkedIn post) can open this case study
+  id: string;
 }
 
 /*
  * Native <details>: keyboard and screen reader support with no JavaScript.
  * Closed by default so the card stays scannable; recruiters open it if curious.
  */
-export function CaseStudyDetails({ caseStudy }: CaseStudyDetailsProps) {
+export function CaseStudyDetails({ caseStudy, id }: CaseStudyDetailsProps) {
   const { outcome, challenge, decisions, lesson } = caseStudy;
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  // Browsers scroll to a fragment but leave a closed <details> closed,
+  // and the SPA may render after the native scroll already happened
+  useEffect(() => {
+    const openIfTargeted = () => {
+      const details = detailsRef.current;
+      if (!details || window.location.hash !== `#${id}`) return;
+      details.open = true;
+      details.scrollIntoView({ block: 'start' });
+    };
+
+    openIfTargeted();
+    window.addEventListener('hashchange', openIfTargeted);
+    return () => window.removeEventListener('hashchange', openIfTargeted);
+  }, [id]);
 
   return (
-    <details className="group @container border-t border-paper-muted/30 pt-5 text-sm md:col-span-2">
+    <details
+      ref={detailsRef}
+      id={id}
+      className="group @container scroll-mt-8 border-t border-paper-muted/30 pt-5 text-sm md:col-span-2"
+    >
       <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-full border border-paper-muted/50 px-4 py-2 font-semibold transition-colors hover:border-brand focus-visible:outline-paper-ink [&::-webkit-details-marker]:hidden">
         How I built it
         {/* A plus whose vertical bar fades out: + when closed, − when open */}
