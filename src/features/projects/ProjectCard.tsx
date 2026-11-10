@@ -91,7 +91,9 @@ export function ProjectCard({ project, number, flipped }: ProjectCardProps) {
       </div>
 
       {/* Below preview and details, across the full card width */}
-      {caseStudy && <CaseStudyDetails caseStudy={caseStudy} />}
+      {caseStudy && (
+        <CaseStudyDetails caseStudy={caseStudy} id={`${slug}-case-study`} />
+      )}
     </article>
   );
 }
